@@ -42,6 +42,15 @@ class SubModel:
         beta_d = D*alpha_d**2 + E*alpha_d**3 + F*alpha_d**2*alpha_s
         
         return np.array([beta_c, beta_d])
+    
+    def inv_betas(self, inv_alphas):
+        A, B, C, D, E, F = self.coeffs
+        inv_alpha_s, inv_alpha_d = inv_alphas
+        
+        inv_beta_c = -A - B/inv_alpha_s - C/inv_alpha_d
+        inv_beta_d = -D - E/inv_alpha_d - F/inv_alpha_s
+        
+        return np.array([inv_beta_c, inv_beta_d])
         
     def coupling_evolution(self, alphas_initial, mu_initial, mu_final):
         log_mu_initial = np.log(mu_initial)
@@ -52,6 +61,11 @@ class SubModel:
         log_mu_initial = np.log(mu_initial)
         log_mu_final = np.log(mu_final)
         return solve_ivp(lambda mu, alpha_d: self.betas((0, alpha_d))[1], [log_mu_initial, log_mu_final], [alpha_d_initial])
+    
+    def inv_coupling_evolution(self, inv_alphas_initial, mu_initial, mu_final):
+        log_mu_initial = np.log(mu_initial)
+        log_mu_final = np.log(mu_final)
+        return solve_ivp(lambda mu, inv_alphas: self.inv_betas(inv_alphas), [log_mu_initial, log_mu_final], inv_alphas_initial)
     
 class ModelClass:
     

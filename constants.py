@@ -1,4 +1,5 @@
 MZ = 91.2
+mt = 172.76
 mu_UV = 1e19
 alpha_s_MZ = 0.11729
 Nc = 3
