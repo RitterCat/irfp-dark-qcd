@@ -4,6 +4,8 @@ mu_UV = 1e19
 alpha_s_MZ = 0.11729
 Nc = 3
 
+MSUSY = 5000
+
 LdQCD_low = 0.2
 LdQCD_high = 5
 
@@ -12,6 +14,13 @@ SUN_irreps = {
     3: ((1, 0), (3, 1/2), (6, 5/2), (8, 3), (10, 15/2)),
     4: ((1, 0), (4, 1/2), (6, 1), (10, 3), (15, 4))
 }
+
+# These are derived values for alpha_s(mt) and alpha_s(UV) derived only under the EFT running using our code
+
+alpha_s_mt = 0.10706137964385966
+alpha_s_MSUSY = 0.07582107277010225
+alpha_s_UV_min = 0.01897437435099453
+alpha_s_UV_min_SUSY = 0.033812337467611114
 
 ### CODE STORAGE ###
 # This is the code that was used to calculate the pre-coefficients that are now stored on file
